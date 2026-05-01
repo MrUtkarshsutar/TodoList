@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>ModeMuse Dashboard</title>
+</head>
+
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <h1>ModeMuse</h1>
+        <p>Productivity + Fitness OS</p>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-view="dashboard">Dashboard</button>
+        <button class="nav-item" data-view="tasks">Tasks</button>
+        <button class="nav-item" data-view="fitness">Fitness</button>
+        <button class="nav-item" data-view="workout">Workout</button>
+      </nav>
+    </aside>
+
+    <main class="app-frame">
+      <header class="topbar">
+        <div>
+          <h2 id="pageTitle">Dashboard</h2>
+          <p id="pageSubtitle">Track your day, goals, and progress at a glance.</p>
+        </div>
+      </header>
+
+      <section class="view active" id="dashboard-view">
+        <div class="dashboard-layout">
+          <div class="stats-grid">
+            <article class="card stat-card">
+              <p class="card-label">Today's Tasks</p>
+              <h3 id="dashboard-task-stat">5 Planned</h3>
+              <span class="card-meta" id="dashboard-task-stat">2 completed - 3 pending</span>
+            </article>
+
+            <article class="card stat-card">
+              <p class="card-label">Next Routine Block</p>
+              <h3>Study Session</h3>
+              <span class="card-meta">Starts at 09:00 AM</span>
+            </article>
+
+            <article class="card stat-card">
+              <p class="card-label">Workout Status</p>
+              <h3 id="workout-total-stat">Push Day Pending</h3>
+              <span class="card-meta" id="workout-total-stat">Estimated 45 min session</span>
+            </article>
+
+            <article class="card stat-card">
+              <p class="card-label">Focus Score</p>
+              <h3>78%</h3>
+              <span class="card-meta">Strong progress today</span>
+            </article>
+          </div>
+
+          <div class="dashboard-main">
+            <section class="card preview-card">
+              <h3>Mini Schedule Preview</h3>
+              <p>Your next routine blocks for the day.</p>
+
+              <div class="preview-list">
+                <div class="preview-item">
+                  <strong>09:00 AM</strong>
+                  <span>Study Session</span>
+                </div>
+                <div class="preview-item">
+                  <strong>01:00 PM</strong>
+                  <span>Work Block</span>
+                </div>
+                <div class="preview-item">
+                  <strong>06:00 PM</strong>
+                  <span>Workout Session</span>
+                </div>
+              </div>
+            </section>
+
+            <section class="card activity-card">
+              <h3>Recent Activity</h3>
+              <p>Latest updates across your day.</p>
+
+              <div class="activity-list">
+                <div class="activity-item">Added task: Complete dashboard layout</div>
+                <div class="activity-item">Planned study block: 3 hours</div>
+                <div class="activity-item">Workout pending: Upper Body</div>
+              </div>
+            </section>
+          </div>
+
+          <div class="dashboard-bottom">
+            <section class="card goals-card">
+              <h3>Goal Progress</h3>
+              <p>Track your progress at a glance.</p>
+
+              <div class="goal-row">
+                <span>Task Completion</span>
+                <span>40%</span>
+              </div>
+              <div class="goal-row">
+                <span>Routine Planned</span>
+                <span>75%</span>
+              </div>
+              <div class="goal-row">
+                <span>Workout Goal</span>
+                <span>Pending</span>
+              </div>
+            </section>
+
+            <section class="card actions-card">
+              <h3>Quick Actions</h3>
+              <p>Jump into the most-used areas.</p>
+
+              <div class="action-buttons">
+                <button type="button" class="submit-btn" data-target="tasks">Open Tasks</button>
+                <button type="button" class="submit-btn" data-target="workout">Start Workout</button>
+                <button type="button" class="submit-btn" data-target="fitness">Log Meal</button>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="tasks-view">
+        <div class="tasks-layout">
+          <section class="card routine-card">
+            <h3>Smart Daily Routine Planner</h3>
+            <p>Enter your daily timings and goals to generate a schedule.</p>
+
+            <form id="plannerForm">
+              <div class="form-group">
+                <label for="wakeTime">Wake Up Time</label>
+                <input type="time" id="wakeTime" required>
+              </div>
+
+              <div class="form-group">
+                <label for="sleepTime">Sleep Time</label>
+                <input type="time" id="sleepTime" required>
+              </div>
+
+              <div class="form-group">
+                <label for="lunchTime">Lunch Time</label>
+                <input type="time" id="lunchTime" value="13:00">
+              </div>
+
+              <div class="form-group">
+                <label for="dinnerTime">Dinner Time</label>
+                <input type="time" id="dinnerTime" value="20:00">
+              </div>
+
+              <div class="form-group">
+                <label for="studyHours">Study (hours)</label>
+                <input type="number" id="studyHours" min="0" step="0.5">
+              </div>
+
+              <div class="form-group">
+                <label for="fitnessMinutes">Fitness (minutes)</label>
+                <input type="number" id="fitnessMinutes" min="0" step="5">
+              </div>
+
+              <div class="form-group">
+                <label for="workoutPref">Workout Preference</label>
+                <select id="workoutPref"
+                  style="width: 100%; padding: 12px; background: transparent; border: 1px solid var(--border); border-radius: 8px; color: var(--text);">
+                  <option value="Morning">Morning</option>
+                  <option value="Evening">Evening</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="workoutTime">Workout time</label>
+                <input type="time" id="workoutTime">
+              </div>
+
+
+              <div class="form-group">
+                <label for="workHours">Work (hours)</label>
+                <input type="number" id="workHours" min="0" step="0.5">
+              </div>
+
+              <div class="form-group">
+                <label for="personalHours">Personal Time (hours)</label>
+                <input type="number" id="personalHours" min="0" step="0.5">
+              </div>
+
+              <div class="info-box">
+                <h4>Available Time</h4>
+                <p id="availableTime">Not calculated yet</p>
+              </div>
+
+              <button type="submit" class="submit-btn">Generate Schedule</button>
+            </form>
+          </section>
+
+          <div class="tasks-side">
+            <section class="card schedule-card">
+              <h3>Generated Schedule</h3>
+              <p id="errorMessage"></p>
+
+              <div id="scheduleList">
+                <p>Your generated routine will appear here.</p>
+              </div>
+            </section>
+
+            <section class="card todo-card">
+              <h3>To-Do Planner</h3>
+
+              <form class="todo-form">
+                <div class="form-group">
+                  <label for="taskTitle">Task Title</label>
+                  <input type="text" id="taskTitle" placeholder="Enter task name">
+                </div>
+
+                <div class="form-group">
+                  <label for="taskPriority">Priority</label>
+                  <select id="taskPriority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="taskDeadline">Deadline</label>
+                  <input type="date" id="taskDeadline">
+                </div>
+
+                <div class="form-group">
+                  <label for="taskStatus">Status</label>
+                  <select id="taskStatus">
+                    <option value="todo">To Do</option>
+                    <option value="inProgress">In Progress</option>
+                    <option value="done">Done</option>
+                  </select>
+                </div>
+
+                <button type="button" class="submit-btn">Add Task</button>
+              </form>
+
+              <div class="todo-list">
+                <p>No tasks yet.</p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="fitness-view">
+        <div class="dashboard-layout">
+          <div class="stats-grid">
+            <article class="card stat-card">
+              <p class="card-label">Calories</p>
+              <h3>1,640 / 2,200</h3>
+              <span class="card-meta">74% of daily target</span>
+            </article>
+
+            <article class="card stat-card">
+              <p class="card-label">Protein</p>
+              <h3>96g / 120g</h3>
+              <span class="card-meta">On track for today</span>
+            </article>
+
+            <article class="card stat-card">
+              <p class="card-label">Water</p>
+              <h3>4L / 6L</h3>
+              <span class="card-meta">Daily hydration progress</span>
+            </article>
+          </div>
+
+          <section class="card">
+            <h3>Nutrition Log</h3>
+            <p>Add your daily intake here.</p>
+            <p id="fitnessMessage"></p>
+
+            <form class="fitness-form">
+              <div class="form-group">
+                <label for="calories">Calories</label>
+                <input type="number" id="calories" placeholder="Calorie count">
+              </div>
+
+              <div class="form-group">
+                <label for="protein">Protein (g)</label>
+                <input type="number" id="protein" placeholder="Protein count">
+              </div>
+
+              <div class="form-group">
+                <label for="carbs">Carbs (g)</label>
+                <input type="number" id="carbs" placeholder="Carbs count">
+              </div>
+
+              <div class="form-group">
+                <label for="fats">Fats (g)</label>
+                <input type="number" id="fats" placeholder="Fats count">
+              </div>
+
+              <button type="button" class="submit-btn">Save Nutrition</button>
+            </form>
+
+            <div class="fitness-list">
+              <p>No fitness logs yet.</p>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="workout-view">
+        <div class="dashboard-layout">
+          <div class="stats-grid">
+            <article class="card stat-card">
+              <p class="card-label">Today's Workout</p>
+              <h3>Push Day</h3>
+              <span class="card-meta">Chest, shoulders, triceps</span>
+            </article>
+
+            <article class="card stat-card">
+              <p class="card-label">Exercises</p>
+              <h3>5 Planned</h3>
+              <span class="card-meta">2 completed</span>
+            </article>
+
+            <article class="card stat-card">
+              <p class="card-label">Duration</p>
+              <h3>45 min</h3>
+              <span class="card-meta">Estimated session time</span>
+            </article>
+          </div>
+
+          <section class="card">
+            <h3>Workout Logger</h3>
+            <p>Track exercises and sets for the current session.</p>
+            <p id="workoutMessage"></p>
+
+            <form class="workout-form">
+              <div class="form-group">
+                <label for="exerciseName">Exercise Name</label>
+                <input type="text" id="exerciseName" placeholder="Bench Press">
+              </div>
+
+              <div class="form-group">
+                <label for="sets">Sets</label>
+                <input type="number" id="sets" placeholder="3">
+              </div>
+
+              <div class="form-group">
+                <label for="reps">Reps</label>
+                <input type="number" id="reps" placeholder="10">
+              </div>
+
+              <div class="form-group">
+                <label for="weight">Weight (kg)</label>
+                <input type="number" id="weight" placeholder="40">
+              </div>
+
+              <button type="button" class="submit-btn">Add Exercise</button>
+            </form>
+
+            <div class="workout-list">
+              <p>No exercises added yet.</p>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+
+
+</html>
